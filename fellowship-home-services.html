@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fellowship Home Services — Utah's #1 Blue Collar Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --steel:      #b8c5ce;
+      --steel-dark: #9eadb8;
+      --steel-light:#cdd7de;
+      --navy:       #2d3f5a;
+      --navy-deep:  #1e2d40;
+      --navy-mid:   #3a5070;
+      --amber:      #d4874a;
+      --amber-light:#e8a86a;
+      --cream:      #f2f4f5;
+      --white:      #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--steel);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5; pointer-events: none;
+    }
+
+    /* FLOATING CTA */
+    .float-cta {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem;
+    }
+    .float-phone {
+      background: var(--amber); color: var(--white);
+      padding: 0.85rem 1.5rem; border-radius: 3rem;
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.02em;
+      text-decoration: none; display: flex; align-items: center; gap: 0.6rem;
+      box-shadow: 0 8px 32px rgba(212,135,74,0.5);
+      animation: pulse 2.5s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .float-phone:hover { transform: scale(1.04); animation: none; }
+    .float-ig {
+      background: var(--navy); color: var(--cream);
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; box-shadow: 0 4px 16px rgba(30,45,64,0.4);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .float-ig:hover { background: #E1306C; transform: scale(1.08); }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 8px 32px rgba(212,135,74,0.5); }
+      50%      { box-shadow: 0 8px 52px rgba(212,135,74,0.9); }
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(184,197,206,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(45,63,90,0.12);
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900;
+      color: var(--navy); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo svg { width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--navy); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-phone { font-weight: 700 !important; display: flex; align-items: center; gap: 0.3rem; }
+    .nav-cta {
+      background: var(--amber) !important; color: var(--white) !important;
+      padding: 0.55rem 1.4rem; border-radius: 2rem;
+      font-weight: 700 !important; transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--navy) !important; transform: translateY(-1px) !important; }
+
+    /* HERO */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 5rem; overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--navy); color: var(--cream);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 2rem;
+      width: fit-content; margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge span { color: var(--amber-light); }
+    .hero h1 {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      line-height: 0.95; color: var(--navy); max-width: 820px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--navy-mid); }
+    .hero h1 .accent-word { position: relative; display: inline-block; }
+    .hero h1 .accent-word::after {
+      content: '';
+      position: absolute; bottom: 4px; left: 0; right: 0;
+      height: 6px; background: var(--amber); border-radius: 2px; z-index: -1;
+    }
+    .hero-sub {
+      font-size: 1.15rem; font-weight: 300; color: var(--navy-mid);
+      max-width: 480px; line-height: 1.7;
+      margin: 2rem 0 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .stat-num {
+      font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 900;
+      color: var(--navy); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; font-weight: 500; color: var(--navy-mid);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem;
+    }
+    .hero-deco {
+      position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+      opacity: 0.07; pointer-events: none;
+    }
+    .hero-deco svg { width: 680px; height: 680px; }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--amber); color: var(--white);
+      padding: 0.95rem 2.2rem; border-radius: 2rem;
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 6px 24px rgba(212,135,74,0.45);
+    }
+    .btn-primary:hover { background: var(--navy); transform: translateY(-2px); box-shadow: none; }
+    .btn-primary-navy {
+      background: var(--navy); color: var(--cream);
+      padding: 0.95rem 2.2rem; border-radius: 2rem;
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary-navy:hover { background: var(--amber); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--navy);
+      padding: 0.95rem 2.2rem; border-radius: 2rem;
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; border: 2px solid var(--navy);
+      cursor: pointer; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-ghost:hover { background: var(--navy); color: var(--cream); }
+    .btn-ghost-white {
+      background: transparent; color: var(--cream);
+      padding: 0.95rem 2.2rem; border-radius: 2rem;
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; border: 2px solid rgba(242,244,245,0.4);
+      cursor: pointer; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-ghost-white:hover { background: rgba(242,244,245,0.12); border-color: var(--cream); }
+    .btn-white {
+      background: var(--white); color: var(--amber);
+      padding: 0.8rem 1.8rem; border-radius: 2rem;
+      font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-white:hover { background: var(--navy); color: var(--white); }
+    .btn-white-outline {
+      background: transparent; color: var(--white);
+      padding: 0.8rem 1.8rem; border-radius: 2rem;
+      font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-white-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      position: relative; z-index: 1;
+      background: var(--navy); color: var(--cream);
+      padding: 1.1rem 0; overflow: hidden;
+      border-top: 2px solid var(--navy-mid);
+      border-bottom: 2px solid var(--navy-mid);
+    }
+    .marquee-inner {
+      display: flex; gap: 3rem; width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .marquee-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; flex-shrink: 0; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* SERVICES */
+    .services { position: relative; z-index: 1; padding: 7rem 3rem; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--navy); line-height: 1.1; max-width: 500px;
+    }
+    .services-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem; margin-bottom: 4rem;
+    }
+    .services-header p {
+      max-width: 380px; font-size: 1rem; line-height: 1.7;
+      color: var(--navy-mid); font-weight: 300; align-self: flex-end;
+    }
+
+    /* SERVICE CARD GRID */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 300px;
+      gap: 1rem;
+    }
+    .scard {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: var(--navy); color: var(--cream);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem; cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .scard:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(45,63,90,0.35); }
+    .scard-photo {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .scard:hover .scard-photo { transform: scale(1.06); }
+    .scard-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(18,32,50,0.96) 0%, rgba(18,32,50,0.5) 55%, rgba(18,32,50,0.1) 100%);
+    }
+    .scard > *:not(.scard-photo):not(.scard-overlay) { position: relative; z-index: 2; }
+
+    .scard-1 { grid-column: span 5; grid-row: span 2; }
+    .scard-2 { grid-column: span 4; }
+    .scard-3 { grid-column: span 3; }
+    .scard-4 { grid-column: span 3; }
+    .scard-5 { grid-column: span 4; }
+    .scard-6 { grid-column: span 5; background: var(--steel-dark); color: var(--navy); }
+
+    .scard-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
+      padding: 0.35rem 0.8rem; border-radius: 2rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1rem; width: fit-content;
+    }
+    .scard-6 .scard-tag { background: rgba(45,63,90,0.12); color: var(--navy); }
+    .scard-name {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .scard-desc { font-size: 0.85rem; font-weight: 300; opacity: 0.85; line-height: 1.55; }
+    .scard-arrow {
+      position: absolute; top: 1.5rem; right: 1.5rem; z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .scard:hover .scard-arrow { background: var(--amber); transform: rotate(45deg); }
+    .scard-6 .scard-arrow { background: rgba(45,63,90,0.15); }
+
+    /* TRUST */
+    .trust {
+      position: relative; z-index: 1;
+      background: var(--navy); padding: 7rem 3rem; overflow: hidden;
+    }
+    .trust::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(212,135,74,0.12) 0%, transparent 60%);
+    }
+    .trust-inner {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .trust .section-label { color: var(--amber-light); }
+    .trust .section-title { color: var(--cream); }
+    .trust-body {
+      font-size: 1rem; font-weight: 300; line-height: 1.8;
+      color: rgba(242,244,245,0.7); margin-top: 1.5rem;
+    }
+    .trust-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .tcard {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 1.5rem; transition: background 0.2s, border-color 0.2s;
+    }
+    .tcard:hover { background: rgba(255,255,255,0.1); border-color: var(--amber); }
+    .tcard-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--amber); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tcard-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; }
+    .tcard-text { font-size: 0.83rem; font-weight: 300; color: rgba(242,244,245,0.65); line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testimonials { position: relative; z-index: 1; padding: 7rem 3rem; }
+    .testimonials-header { text-align: center; margin-bottom: 4rem; }
+    .testimonials-header .section-title { margin: 0 auto; }
+    .test-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .tquote {
+      background: var(--navy); color: var(--cream);
+      border-radius: 20px; padding: 2rem; transition: transform 0.3s;
+    }
+    .tquote:hover { transform: translateY(-4px); }
+    .tquote-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+    .tquote-stars span { color: var(--amber); font-size: 1rem; }
+    .tquote-text {
+      font-size: 0.95rem; line-height: 1.7; font-weight: 300;
+      color: rgba(242,244,245,0.85); margin-bottom: 1.5rem; font-style: italic;
+    }
+    .tquote-author { display: flex; align-items: center; gap: 0.75rem; }
+    .tquote-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--amber); display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-weight: 900; font-size: 1rem;
+      color: var(--navy-deep); flex-shrink: 0;
+    }
+    .tquote-name { font-weight: 600; font-size: 0.9rem; color: var(--cream); }
+    .tquote-loc { font-size: 0.78rem; color: rgba(242,244,245,0.5); }
+
+    /* BIG CTA */
+    .cta-section {
+      position: relative; z-index: 1;
+      background: var(--navy-deep); overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(212,135,74,0.18) 0%, transparent 65%);
+    }
+    .cta-bar {
+      position: relative; z-index: 1;
+      background: var(--amber);
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+      flex-wrap: wrap; text-align: center;
+    }
+    .cta-bar-text { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.1rem; color: var(--white); }
+    .cta-bar-num  { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--white); }
+    .cta-bar-sep  { color: rgba(255,255,255,0.4); font-size: 1.5rem; }
+    .cta-top {
+      position: relative; z-index: 1;
+      padding: 7rem 3rem 6rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .cta-headline {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      color: var(--cream); line-height: 1.0; margin-bottom: 1.5rem;
+    }
+    .cta-headline em { font-style: italic; color: var(--amber-light); }
+    .cta-subtext {
+      font-size: 1.1rem; font-weight: 300; color: rgba(242,244,245,0.7);
+      line-height: 1.7; margin-bottom: 2.5rem; max-width: 440px;
+    }
+    .cta-right { display: flex; flex-direction: column; gap: 1rem; }
+    .cta-phone-card {
+      background: var(--amber);
+      border-radius: 24px; padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 16px 60px rgba(212,135,74,0.45);
+      transition: transform 0.2s;
+    }
+    .cta-phone-card:hover { transform: scale(1.02); }
+    .cta-phone-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 0.5rem;
+    }
+    .cta-phone-number {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white); line-height: 1; margin-bottom: 1.2rem;
+      letter-spacing: -0.01em; text-decoration: none; display: block;
+    }
+    .cta-phone-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .cta-ig-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px; padding: 1.5rem 2rem;
+      display: flex; align-items: center; gap: 1.2rem;
+      text-decoration: none; color: var(--cream);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .cta-ig-card:hover { background: rgba(225,48,108,0.15); border-color: #E1306C; }
+    .ig-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ig-handle { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 900; color: var(--cream); line-height: 1; }
+    .ig-sub { font-size: 0.8rem; color: rgba(242,244,245,0.5); margin-top: 0.25rem; }
+
+    /* FOOTER */
+    footer {
+      position: relative; z-index: 1;
+      background: #111c27; color: var(--cream); padding: 3rem;
+    }
+    .footer-inner {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;
+    }
+    .footer-brand {
+      font-family: 'Fraunces', serif; font-weight: 900;
+      font-size: 1.3rem; color: var(--cream);
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
+    }
+    .footer-tagline { font-size: 0.83rem; color: rgba(242,244,245,0.4); }
+    .footer-col-title {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a {
+      font-size: 0.875rem; color: rgba(242,244,245,0.55);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--amber-light); }
+    .footer-contact-line {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.875rem; color: rgba(242,244,245,0.55);
+      text-decoration: none; margin-bottom: 0.6rem; transition: color 0.2s;
+    }
+    .footer-contact-line:hover { color: var(--amber-light); }
+    .footer-ig {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.875rem; color: rgba(242,244,245,0.55);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-ig:hover { color: #E1306C; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 1.5rem; }
+    .footer-copy { font-size: 0.78rem; color: rgba(242,244,245,0.25); text-align: center; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-deco { display: none; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .services { padding: 5rem 1.5rem; }
+      .service-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 240px; }
+      .scard-1,.scard-2,.scard-3,.scard-4,.scard-5,.scard-6 { grid-column: span 2; }
+      .trust-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .trust { padding: 5rem 1.5rem; }
+      .testimonials { padding: 5rem 1.5rem; }
+      .test-grid { grid-template-columns: 1fr; }
+      .cta-top { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .cta-bar { padding: 1.2rem 1.5rem; }
+      .float-cta { bottom: 1rem; right: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING CTA -->
+  <div class="float-cta">
+    <a href="https://www.instagram.com/fellowship.homes" target="_blank" class="float-ig" title="@fellowship.homes on Instagram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+    </a>
+    <a href="tel:+18018368127" class="float-phone">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2h5l2 4-3 2a11 11 0 005 5l2-3 4 2v5a2 2 0 01-2 2A16 16 0 012 4a2 2 0 012-2" fill="white"/></svg>
+      801-836-8127
+    </a>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="https://i.imgur.com/p5CZSXP.png" alt="Fellowship Home Services" style="height:52px;width:auto;display:block;" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li>
+        <a href="https://www.instagram.com/fellowship.homes" target="_blank" style="display:flex;align-items:center;gap:0.35rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#2d3f5a" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="#2d3f5a" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#2d3f5a"/></svg>
+          @fellowship.homes
+        </a>
+      </li>
+      <li><a href="tel:+18018368127" class="nav-phone">📞 801-836-8127</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us Today</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><span>★</span> Utah's #1 Blue Collar Hub</div>
+    <h1>
+      Your home,<br/>
+      <em>handled</em> by<br/>
+      <span class="accent-word">real</span> tradesmen.
+    </h1>
+    <p class="hero-sub">
+      Fellowship Home Services connects Utah homeowners with the most trusted, skilled blue-collar professionals in the state — from permanent roof lighting to boat detailing.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+18018368127" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l2 4-2.5 1.5a9 9 0 004 4L11 9l4 2v4a2 2 0 01-2 2A14 14 0 012 4a2 2 0 012-2z" fill="currentColor"/></svg>
+        Call 801-836-8127
+      </a>
+      <a href="#contact" class="btn-ghost">Contact Us Today</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">500+</div><div class="stat-label">Jobs Completed</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Satisfaction Rate</div></div>
+      <div><div class="stat-num">Utah's</div><div class="stat-label">Ranked #1 Hub</div></div>
+    </div>
+    <div class="hero-deco">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10L10 90h20v100h140V90h20L100 10z" fill="#2d3f5a"/>
+        <rect x="70" y="120" width="25" height="35" rx="3" fill="#b8c5ce"/>
+        <rect x="105" y="110" width="30" height="20" rx="3" fill="#b8c5ce"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-inner">
+      <div class="marquee-item"><div class="marquee-dot"></div> Permanent Roof Lighting</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Boat Detailing</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Window Cleaning</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Gutter Cleaning</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Pressure Washing</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Call 801-836-8127</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Utah's Best Tradesmen</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> @fellowship.homes</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Permanent Roof Lighting</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Boat Detailing</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Window Cleaning</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Gutter Cleaning</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Pressure Washing</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Call 801-836-8127</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> Utah's Best Tradesmen</div>
+      <div class="marquee-item"><div class="marquee-dot"></div> @fellowship.homes</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">Every job done right the <em style="font-style:italic">first</em> time.</h2>
+      </div>
+      <p>We specialize in the services Utah homeowners and boat owners need most — all delivered by background-checked, experienced tradesmen you can actually trust.</p>
+    </div>
+
+    <div class="service-grid">
+
+      <!-- 1: Permanent Lighting – large feature -->
+      <div class="scard scard-1">
+        <div class="scard-photo" style="background-image:url('https://i.imgur.com/EloYAwl.jpeg');"></div>
+        <div class="scard-overlay"></div>
+        <div class="scard-tag">★ Most Popular</div>
+        <div class="scard-name">Permanent Outdoor Roof Lighting</div>
+        <div class="scard-desc">Year-round architectural LED lighting installed flush with your roofline. Never hang holiday lights again — control every color, pattern & event from your phone.</div>
+        <div class="scard-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 2: Boat Detailing -->
+      <div class="scard scard-2">
+        <div class="scard-photo" style="background-image:url('https://i.imgur.com/n2CJLpG.jpeg');"></div>
+        <div class="scard-overlay"></div>
+        <div class="scard-tag">Marine Grade</div>
+        <div class="scard-name">Boat Detailing</div>
+        <div class="scard-desc">Full interior & exterior detailing. Waxing, polishing, upholstery — showroom finish guaranteed.</div>
+        <div class="scard-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 3: Window Cleaning -->
+      <div class="scard scard-3">
+        <div class="scard-photo" style="background-image:url('https://i.imgur.com/EloYAwl.jpeg'); filter:brightness(0.8) saturate(0.6) hue-rotate(160deg);"></div>
+        <div class="scard-overlay"></div>
+        <div class="scard-tag">Crystal Clear</div>
+        <div class="scard-name">Window Cleaning</div>
+        <div class="scard-desc">Streak-free inside and out for residential & commercial.</div>
+        <div class="scard-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 4: Gutter Cleaning -->
+      <div class="scard scard-4">
+        <div class="scard-photo" style="background-image:url('https://i.imgur.com/vPpkuFT.jpeg');"></div>
+        <div class="scard-overlay"></div>
+        <div class="scard-tag">Seasonal</div>
+        <div class="scard-name">Gutter Cleaning</div>
+        <div class="scard-desc">Keep gutters flowing and protect your home from water damage.</div>
+        <div class="scard-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 5: Pressure Washing -->
+      <div class="scard scard-5">
+        <div class="scard-photo" style="background-image:url('https://i.imgur.com/vPpkuFT.jpeg'); filter:brightness(0.7) saturate(1.3);"></div>
+        <div class="scard-overlay"></div>
+        <div class="scard-tag">High Power</div>
+        <div class="scard-name">Pressure Washing</div>
+        <div class="scard-desc">Driveways, decks, siding — blasted back to life in one visit.</div>
+        <div class="scard-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- 6: More services CTA -->
+      <div class="scard scard-6">
+        <div class="scard-tag" style="background:rgba(45,63,90,0.12);color:#2d3f5a;">& Much More</div>
+        <div class="scard-name" style="color:#2d3f5a;">Don't see your service?</div>
+        <div class="scard-desc" style="color:rgba(45,63,90,0.65);">We connect you with Utah's best tradesmen for almost any blue-collar job. Just call — we'll get it handled.</div>
+        <div style="margin-top:1.2rem;">
+          <a href="tel:+18018368127" class="btn-primary-navy" style="font-size:0.85rem;padding:0.65rem 1.4rem;">Call 801-836-8127</a>
+        </div>
+        <div class="scard-arrow" style="background:rgba(45,63,90,0.15);">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="#2d3f5a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust" id="why">
+    <div class="trust-inner">
+      <div class="reveal">
+        <p class="section-label">Why Fellowship</p>
+        <h2 class="section-title">The most trusted name in Utah home services.</h2>
+        <p class="trust-body">
+          We're not a faceless marketplace. Every tradesman in our network is personally vetted, background-checked, and held to the highest standard. When you call Fellowship, you get someone you'd be proud to let into your home.
+        </p>
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="tel:+18018368127" class="btn-primary">Call Us Now</a>
+          <a href="#contact" class="btn-ghost-white">Get a Free Quote</a>
+        </div>
+      </div>
+      <div class="trust-cards reveal reveal-d1">
+        <div class="tcard">
+          <div class="tcard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 6v6c0 4.4 3.4 8.5 8 9.5 4.6-1 8-5.1 8-9.5V6L11 2z" fill="white"/></svg></div>
+          <div class="tcard-title">Fully Vetted</div>
+          <div class="tcard-text">Every contractor is background-checked, licensed, and insured before joining our network.</div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="white" stroke-width="2"/><path d="M7 11l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="tcard-title">Guaranteed Work</div>
+          <div class="tcard-text">Not happy? We make it right. Every job comes with our satisfaction guarantee.</div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2a9 9 0 100 18A9 9 0 0011 2zM11 6v5l3 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="tcard-title">Fast Response</div>
+          <div class="tcard-text">Same-day quotes. Most jobs scheduled within 48 hours of booking.</div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 3h7l2 4-3 2a11 11 0 005 5l2-3 4 2v7a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2" fill="white"/></svg></div>
+          <div class="tcard-title">Local & Utah Proud</div>
+          <div class="tcard-text">We're Utah-born. Every dollar stays in our community and supports local tradesmen.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="reviews">
+    <div class="testimonials-header reveal">
+      <p class="section-label" style="text-align:center;">Customer Reviews</p>
+      <h2 class="section-title">Utah homeowners love us.</h2>
+    </div>
+    <div class="test-grid">
+      <div class="tquote reveal">
+        <div class="tquote-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="tquote-text">"The permanent roof lighting looks absolutely incredible. Neighbors keep asking who did it. I'll never hang holiday lights again!"</p>
+        <div class="tquote-author">
+          <div class="tquote-avatar">J</div>
+          <div><div class="tquote-name">Jason M.</div><div class="tquote-loc">Lehi, UT</div></div>
+        </div>
+      </div>
+      <div class="tquote reveal reveal-d1">
+        <div class="tquote-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="tquote-text">"Had my boat detailed before the season — looks better than the day I bought it. Super professional crew, showed up on time and left it spotless."</p>
+        <div class="tquote-author">
+          <div class="tquote-avatar">T</div>
+          <div><div class="tquote-name">Travis H.</div><div class="tquote-loc">St. George, UT</div></div>
+        </div>
+      </div>
+      <div class="tquote reveal reveal-d2">
+        <div class="tquote-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="tquote-text">"Gutters and windows done in one afternoon. Fair pricing, friendly crew. Will absolutely use them every single season."</p>
+        <div class="tquote-author">
+          <div class="tquote-avatar">S</div>
+          <div><div class="tquote-name">Sarah K.</div><div class="tquote-loc">Provo, UT</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG CONTACT CTA -->
+  <section class="cta-section" id="contact">
+
+    <div class="cta-bar">
+      <span class="cta-bar-text">🔥 Limited spots this season —</span>
+      <span class="cta-bar-num">Don't wait, book today</span>
+      <span class="cta-bar-sep">|</span>
+      <a href="tel:+18018368127" style="color:white;font-weight:800;font-size:1.15rem;text-decoration:none;letter-spacing:0.01em;">📞 801-836-8127</a>
+    </div>
+
+    <div class="cta-top">
+      <div class="reveal">
+        <p class="section-label" style="color:var(--amber-light);">Contact Us Today</p>
+        <h2 class="cta-headline">
+          Don't wait.<br/>
+          Get it done<br/>
+          <em>this week.</em>
+        </h2>
+        <p class="cta-subtext">
+          No runaround. No mystery pricing. Just a quick call with a real person who'll get your job scheduled fast. Free quotes, same-day responses.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="tel:+18018368127" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l2 4-2.5 1.5a9 9 0 004 4L11 9l4 2v4a2 2 0 01-2 2A14 14 0 012 4a2 2 0 012-2z" fill="currentColor"/></svg>
+            Call 801-836-8127
+          </a>
+          <a href="https://www.instagram.com/fellowship.homes" target="_blank" class="btn-ghost-white">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+            Follow on Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="cta-right reveal reveal-d1">
+        <div class="cta-phone-card">
+          <div class="cta-phone-label">📞 Call or text us right now</div>
+          <a href="tel:+18018368127" class="cta-phone-number">801-836-8127</a>
+          <div class="cta-phone-btns">
+            <a href="tel:+18018368127" class="btn-white">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l2 4-2.5 1.5a9 9 0 004 4L11 9l4 2v4a2 2 0 01-2 2A14 14 0 012 4a2 2 0 012-2z" fill="currentColor"/></svg>
+              Call Now
+            </a>
+            <a href="sms:+18018368127" class="btn-white-outline">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 2h12a1 1 0 011 1v8a1 1 0 01-1 1H5l-3 3V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/></svg>
+              Text Us
+            </a>
+          </div>
+        </div>
+
+        <a href="https://www.instagram.com/fellowship.homes" target="_blank" class="cta-ig-card">
+          <div class="ig-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+          </div>
+          <div>
+            <div class="ig-handle">@fellowship.homes</div>
+            <div class="ig-sub">See our work · Follow for updates</div>
+          </div>
+          <svg style="margin-left:auto;opacity:0.4;" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 4L2 16h4v12h8v-8h4v8h8V16h4L16 4z" fill="#b8c5ce"/></svg>
+          Fellowship Home Services
+        </div>
+        <div class="footer-tagline">Utah's #1 Blue Collar Hub</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Permanent Roof Lighting</a></li>
+          <li><a href="#services">Boat Detailing</a></li>
+          <li><a href="#services">Window Cleaning</a></li>
+          <li><a href="#services">Gutter Cleaning</a></li>
+          <li><a href="#services">Pressure Washing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact Us Today</div>
+        <a href="tel:+18018368127" class="footer-contact-line">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2h4l2 4-2.5 1.5a9 9 0 004 4L11 9l4 2v4a2 2 0 01-2 2A14 14 0 012 4a2 2 0 012-2z" fill="rgba(242,244,245,0.55)"/></svg>
+          801-836-8127
+        </a>
+        <a href="sms:+18018368127" class="footer-contact-line">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2h12a1 1 0 011 1v8a1 1 0 01-1 1H5l-3 3V3a1 1 0 011-1z" stroke="rgba(242,244,245,0.55)" stroke-width="1.5"/></svg>
+          Text Us
+        </a>
+        <a href="https://www.instagram.com/fellowship.homes" target="_blank" class="footer-ig">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="rgba(242,244,245,0.55)" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="rgba(242,244,245,0.55)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(242,244,245,0.55)"/></svg>
+          @fellowship.homes
+        </a>
+      </div>
+    </div>
+    <hr class="footer-divider"/>
+    <p class="footer-copy">© 2025 Fellowship Home Services · Utah's #1 Blue Collar Hub · 801-836-8127</p>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
