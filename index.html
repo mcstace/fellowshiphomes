@@ -1,974 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fellowship Home Services — Utah's #1 Home Services</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenkins Tire Co. | Bountiful, Utah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --black:   #0a0c10;
-      --dark:    #10141c;
-      --navy:    #161e2e;
-      --navy-mid:#1f2d42;
-      --amber:   #c8773a;
-      --amber-l: #e09558;
-      --gold:    #d4af6a;
-      --white:   #f5f3ef;
-      --muted:   #8a9ab0;
-      --border:  rgba(255,255,255,0.08);
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #1a1a1a;
+      --dark: #2c2c2c;
+      --grey: #f4f4f4;
+      --border: #ddd;
+      --text: #333;
+      --muted: #666;
+      --white: #fff;
+      --red: #c0392b;
+    }
     html { scroll-behavior: smooth; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text); background: #fff; font-size: 15px; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
+    /* TOP BAR */
+    .top-bar {
       background: var(--black);
-      color: var(--white);
-      overflow-x: hidden;
+      color: rgba(255,255,255,0.7);
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 8px 24px;
+      flex-wrap: wrap;
     }
+    .top-bar a { color: rgba(255,255,255,0.7); }
+    .top-bar a:hover { color: #fff; }
+    .top-bar-item { display: flex; align-items: center; gap: 6px; }
 
-    /* ── SCROLLBAR ───────────────────────────── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
-
-    /* ── NAV ─────────────────────────────────── */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 3rem;
-      background: rgba(10,12,16,0.75);
-      backdrop-filter: blur(20px) saturate(1.4);
-      border-bottom: 1px solid var(--border);
-      transition: padding 0.3s;
+      background: #fff;
+      border-bottom: 3px solid var(--black);
+      display: flex;
+      align-items: center;
+      padding: 0 28px;
+      height: 66px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
-    nav.scrolled { padding: 0.75rem 3rem; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; margin-right: 36px; flex-shrink: 0; }
+    .nav-logo-img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+    .nav-brand-name { font-family: 'Oswald', sans-serif; font-size: 19px; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.15; }
+    .nav-brand-name small { display: block; font-size: 10.5px; font-weight: 400; font-family: 'Open Sans', sans-serif; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: stretch; height: 100%; list-style: none; flex: 1; }
+    .nav-links li a { display: flex; align-items: center; height: 100%; padding: 0 16px; font-family: 'Oswald', sans-serif; font-size: 14.5px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dark); border-bottom: 3px solid transparent; margin-bottom: -3px; transition: color .12s, border-color .12s; }
+    .nav-links li a:hover { color: var(--black); border-color: var(--black); }
+    .nav-phone { margin-left: auto; display: flex; align-items: center; gap: 8px; font-family: 'Oswald', sans-serif; font-size: 19px; font-weight: 700; color: var(--black); white-space: nowrap; }
 
-    .nav-logo img { height: 46px; width: auto; display: block; }
-
-    .nav-links {
-      display: flex; gap: 2.2rem; list-style: none;
-      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
-    }
-    .nav-links a { color: rgba(245,243,239,0.6); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--white); }
-
-    .nav-right { display: flex; align-items: center; gap: 1.2rem; }
-    .nav-phone {
-      font-size: 0.82rem; letter-spacing: 0.04em; color: rgba(245,243,239,0.65);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .nav-phone:hover { color: var(--amber-l); }
-    .nav-cta {
-      background: var(--amber);
-      color: var(--white);
-      padding: 0.55rem 1.4rem;
-      border-radius: 2px;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .nav-cta:hover { background: var(--amber-l); }
-
-    /* ── HERO ─────────────────────────────────── */
+    /* HERO */
     .hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: flex-end;
-      padding: 0 3rem 7rem;
+      position: relative;
+      height: 540px;
+      display: flex;
+      align-items: flex-end;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background:
-        linear-gradient(to top, rgba(10,12,16,0.97) 0%, rgba(10,12,16,0.45) 50%, rgba(10,12,16,0.2) 100%),
-        linear-gradient(to right, rgba(10,12,16,0.7) 0%, transparent 60%),
-        url('https://i.imgur.com/EloYAwl.jpeg') center/cover no-repeat;
-      transform: scale(1.04);
-      transition: transform 8s ease-out;
+      background-image: url('https://i.imgur.com/ppduMpW.jpeg');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.45);
     }
-    .hero-bg.loaded { transform: scale(1); }
-
-    /* Subtle amber glow in upper-right */
-    .hero-glow {
-      position: absolute; top: 10%; right: 5%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(200,119,58,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-content { position: relative; z-index: 2; max-width: 680px; }
-
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--amber-l); margin-bottom: 1.4rem;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 32px; height: 1px; background: var(--amber);
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.4rem, 7vw, 6.2rem);
-      font-weight: 600; line-height: 1.0;
-      color: var(--white);
-      margin-bottom: 1.4rem;
-    }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(245,243,239,0.6);
-      max-width: 460px; line-height: 1.7;
-      margin-bottom: 2.4rem;
-    }
-
-    .hero-actions { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--amber);
-      color: var(--white);
-      padding: 0.9rem 2.4rem;
-      border-radius: 2px;
-      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: var(--amber-l); transform: translateY(-1px); }
-
-    .btn-ghost {
-      color: rgba(245,243,239,0.7);
-      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em;
-      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
-      transition: color 0.2s;
-    }
-    .btn-ghost:hover { color: var(--white); }
-    .btn-ghost::before { content: '↓'; font-size: 1rem; }
-
-    /* ── STATS BAR ───────────────────────────── */
-    .stats {
-      background: var(--navy-mid);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: flex; justify-content: center; gap: 0;
-    }
-    .stat {
-      flex: 1; max-width: 220px;
-      padding: 2rem 1.5rem; text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem; font-weight: 700; color: var(--amber-l);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-top: 0.4rem;
-    }
-
-    /* ── SECTION BASE ────────────────────────── */
-    section { padding: 7rem 3rem; }
-    .section-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--amber); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.6rem;
-    }
-    .section-eyebrow::before { content: '—'; }
-    h2.section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 600; line-height: 1.1;
-      margin-bottom: 1.2rem;
-    }
-    h2.section-title em { font-style: italic; color: var(--gold); }
-    .section-sub {
-      font-size: 1rem; color: var(--muted); line-height: 1.75;
-      max-width: 540px;
-    }
-
-    /* ── SERVICES ────────────────────────────── */
-    #services { background: var(--dark); }
-
-    .services-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 1.5px;
-    }
-
-    /* Big card spans 2 rows */
-    .service-card {
-      position: relative; overflow: hidden;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-    }
-    .service-card.tall { grid-row: span 2; aspect-ratio: unset; }
-
-    .service-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      display: block;
-    }
-    .service-card:hover img { transform: scale(1.06); }
-
-    .service-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,12,16,0.9) 0%, rgba(10,12,16,0.3) 50%, transparent 100%);
-      transition: background 0.3s;
-    }
-    .service-card:hover .service-overlay {
-      background: linear-gradient(to top, rgba(10,12,16,0.95) 0%, rgba(10,12,16,0.5) 60%, rgba(200,119,58,0.1) 100%);
-    }
-
-    .service-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.8rem;
-    }
-    .service-tag {
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--amber-l); margin-bottom: 0.5rem;
-    }
-    .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 600;
-      color: var(--white); line-height: 1.1;
-    }
-    .service-card.tall .service-name { font-size: 2.6rem; }
-    .service-desc {
-      font-size: 0.85rem; color: rgba(245,243,239,0.55);
-      margin-top: 0.5rem; line-height: 1.5;
-      max-width: 280px;
-      opacity: 0; transform: translateY(8px);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .service-card:hover .service-desc { opacity: 1; transform: translateY(0); }
-    .service-arrow {
-      position: absolute; top: 1.4rem; right: 1.4rem;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(200,119,58,0.2);
-      border: 1px solid rgba(200,119,58,0.4);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem; color: var(--amber-l);
-      opacity: 0; transform: translate(4px, -4px);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .service-card:hover .service-arrow { opacity: 1; transform: translate(0,0); }
-
-    /* ── MORE SERVICES PILL ROW ──────────────── */
-    .more-services {
-      display: flex; flex-wrap: wrap; gap: 0.8rem;
-      margin-top: 2.4rem; padding-top: 2.4rem;
-      border-top: 1px solid var(--border);
-    }
-    .more-pill {
-      padding: 0.55rem 1.2rem;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 0.8rem; color: var(--muted);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .more-pill:hover { border-color: var(--amber); color: var(--amber-l); }
-    .more-pill.cta-pill {
-      background: rgba(200,119,58,0.12);
-      border-color: rgba(200,119,58,0.35);
-      color: var(--amber-l);
-    }
-    .more-pill.cta-pill a {
-      text-decoration: none; color: inherit;
-    }
-
-    /* ── WHY FELLOWSHIP ──────────────────────── */
-    #why { background: var(--black); }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-    .why-image {
-      position: relative; border-radius: 2px; overflow: hidden;
-    }
-    .why-image img {
-      width: 100%; display: block; border-radius: 2px;
-    }
-    .why-image::after {
-      content: '';
-      position: absolute; inset: 0;
-      border: 1px solid var(--border); pointer-events: none;
-    }
-    .why-badge {
-      position: absolute; bottom: 2rem; right: -1.5rem;
-      background: var(--amber);
-      padding: 1.2rem 1.8rem;
-      border-radius: 2px;
-      text-align: center;
-    }
-    .why-badge-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1;
-    }
-    .why-badge-txt {
-      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(245,243,239,0.8); margin-top: 0.25rem;
-    }
-
-    .why-features { display: flex; flex-direction: column; gap: 0; }
-    .why-item {
-      padding: 1.6rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; gap: 1.4rem; align-items: flex-start;
-    }
-    .why-item:first-child { border-top: 1px solid var(--border); }
-    .why-icon {
-      flex-shrink: 0; width: 36px; height: 36px;
-      background: rgba(200,119,58,0.12);
-      border: 1px solid rgba(200,119,58,0.25);
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-    }
-    .why-item-title {
-      font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem;
-    }
-    .why-item-desc {
-      font-size: 0.85rem; color: var(--muted); line-height: 1.6;
-    }
-
-    /* ── PROCESS ─────────────────────────────── */
-    #process {
-      background: var(--navy);
-      text-align: center;
-    }
-    .process-header { margin-bottom: 4rem; }
-    .process-header .section-eyebrow { justify-content: center; }
-    .process-header .section-eyebrow::before { display: none; }
-
-    .steps {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0; position: relative;
-    }
-    .steps::before {
-      content: '';
-      position: absolute; top: 2.2rem; left: 16.67%; right: 16.67%;
-      height: 1px; background: var(--border);
-    }
-    .step { padding: 0 2.5rem; }
-    .step-num {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--amber);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-weight: 700; color: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.6rem;
-      position: relative; z-index: 1;
-    }
-    .step-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 600; margin-bottom: 0.6rem;
-    }
-    .step-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-
-    /* ── TESTIMONIALS ────────────────────────── */
-    #reviews { background: var(--dark); overflow: hidden; }
-
-    .reviews-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
-    }
-    .rating-badge {
-      display: flex; align-items: center; gap: 0.8rem;
-    }
-    .stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.05em; }
-    .rating-text { font-size: 0.85rem; color: var(--muted); }
-    .rating-text strong { color: var(--white); }
-
-    .review-track {
-      display: flex; gap: 1.5rem;
-      animation: slide 40s linear infinite;
-      width: max-content;
-    }
-    .review-track:hover { animation-play-state: paused; }
-    @keyframes slide {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .review-card {
-      width: 320px; flex-shrink: 0;
-      background: var(--navy);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 2rem;
-    }
-    .review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
-    .review-text {
-      font-size: 0.88rem; color: rgba(245,243,239,0.7);
-      line-height: 1.7; margin-bottom: 1.4rem;
-    }
-    .review-author {
-      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
-      color: var(--muted); text-transform: uppercase;
-    }
-    .review-location {
-      font-size: 0.72rem; color: rgba(138,154,176,0.6);
-    }
-
-    /* ── CTA SECTION ─────────────────────────── */
-    #contact {
-      background: var(--black);
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.82) 40%, rgba(0,0,0,0.1) 100%); }
+    .hero-content {
       position: relative;
-      overflow: hidden;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 32px;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px 48px;
+      align-items: end;
     }
-    #contact::before {
-      content: '';
-      position: absolute; top: -200px; right: -200px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(200,119,58,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .hero-left {}
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 10px; }
+    .hero-title { font-family: 'Oswald', sans-serif; font-size: clamp(38px, 5vw, 60px); font-weight: 700; color: #fff; text-transform: uppercase; line-height: 1.0; margin-bottom: 14px; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 28px; max-width: 400px; }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--black); font-family: 'Oswald', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 24px; border: 2px solid #fff; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background .12s; }
+    .btn-white:hover { background: #e8e8e8; }
+    .btn-outline-w { background: transparent; color: #fff; font-family: 'Oswald', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 24px; border: 2px solid rgba(255,255,255,0.4); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: border-color .12s; }
+    .btn-outline-w:hover { border-color: rgba(255,255,255,0.75); }
 
-    .cta-wrap {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 6rem; align-items: start;
-      position: relative; z-index: 1;
-    }
+    /* HERO INFO CARD */
+    .hero-card { background: rgba(255,255,255,0.96); border: 1px solid rgba(0,0,0,0.08); }
+    .hero-card-hdr { background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 9px 16px; }
+    .hero-card-row { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #eee; font-size: 13.5px; color: #333; }
+    .hero-card-row:last-child { border-bottom: none; }
+    .hero-card-row svg { flex-shrink: 0; stroke: #888; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-card-row strong { display: block; font-weight: 600; color: #111; }
+    .open-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #1e7e34; background: #eafaee; border: 1px solid #a8d5b0; padding: 1px 8px; margin-bottom: 2px; }
+    .open-pill::before { content: ''; width: 6px; height: 6px; background: #28a745; border-radius: 50%; }
+    .hero-card-btn { display: block; background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px 16px; text-align: center; transition: background .12s; }
+    .hero-card-btn:hover { background: #333; }
 
-    .cta-left .section-sub { margin-bottom: 2.8rem; }
+    /* ICON STRIP */
+    .icon-strip { background: var(--grey); border-bottom: 1px solid var(--border); }
+    .icon-strip-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(6,1fr); }
+    .icon-tab { display: flex; flex-direction: column; align-items: center; padding: 20px 10px; border-right: 1px solid var(--border); text-align: center; cursor: pointer; transition: background .12s; }
+    .icon-tab:last-child { border-right: none; }
+    .icon-tab:hover { background: #ebebeb; }
+    .icon-tab img { width: 38px; height: 38px; object-fit: contain; margin-bottom: 8px; }
+    .icon-tab-label { font-family: 'Oswald', sans-serif; font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--black); }
 
-    .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-card {
-      display: flex; align-items: center; gap: 1.2rem;
-      padding: 1.2rem 1.6rem;
-      background: var(--navy);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .contact-card:hover {
-      border-color: var(--amber);
-      background: rgba(200,119,58,0.08);
-    }
-    .contact-icon {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(200,119,58,0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .contact-label {
-      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 0.2rem;
-    }
-    .contact-val {
-      font-size: 1rem; font-weight: 600; color: var(--white);
-    }
-    .contact-card .arrow {
-      margin-left: auto; color: var(--amber); font-size: 1rem;
-    }
+    /* TIRE FINDER */
+    .finder-bar { background: var(--black); padding: 0; }
+    .finder-inner { max-width: 1100px; margin: 0 auto; padding: 28px 32px; }
+    .finder-title { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 16px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+    .finder-title img { width: 28px; height: 28px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; }
+    .finder-form { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+    .finder-group { display: flex; flex-direction: column; gap: 5px; flex: 1; min-width: 140px; }
+    .finder-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+    .finder-group select { background: #fff; border: none; padding: 10px 12px; font-size: 14px; font-family: 'Open Sans', sans-serif; color: #333; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; }
+    .finder-group select:disabled { background-color: #e8e8e8; color: #999; cursor: not-allowed; }
+    .finder-btn { background: #fff; color: var(--black); font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 10px 28px; border: none; cursor: pointer; white-space: nowrap; height: 42px; align-self: flex-end; transition: background .12s; flex-shrink: 0; }
+    .finder-btn:hover { background: #e0e0e0; }
+    .finder-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 10px; }
 
-    /* Quote Form */
-    .quote-form { display: flex; flex-direction: column; gap: 0.8rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label {
-      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .form-group input, .form-group select, .form-group textarea {
-      background: var(--navy);
-      border: 1px solid var(--border);
-      color: var(--white);
-      padding: 0.8rem 1rem;
-      border-radius: 2px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      transition: border-color 0.2s;
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(138,154,176,0.5); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--amber); }
-    .form-group select option { background: var(--navy); }
-    .form-group textarea { resize: none; height: 90px; }
-    .form-submit {
-      background: var(--amber);
-      color: var(--white);
-      border: none; cursor: pointer;
-      padding: 1rem;
-      border-radius: 2px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
-      transition: background 0.2s;
-      margin-top: 0.4rem;
-    }
-    .form-submit:hover { background: var(--amber-l); }
-    .form-note {
-      font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.2rem;
-    }
+    /* MAIN LAYOUT */
+    .main-wrapper { max-width: 1100px; margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: 1fr 296px; gap: 40px; }
 
-    /* ── FOOTER ──────────────────────────────── */
-    footer {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      padding: 4rem 3rem 2rem;
-    }
-    .footer-top {
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 4rem; margin-bottom: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .footer-brand img { height: 44px; margin-bottom: 1.2rem; }
-    .footer-brand p {
-      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
-      max-width: 280px;
-    }
-    .footer-col-title {
-      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--amber); margin-bottom: 1.2rem;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .footer-links a {
-      font-size: 0.85rem; color: var(--muted); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-      font-size: 0.75rem; color: rgba(138,154,176,0.45);
-    }
-    .footer-ig {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.8rem; color: var(--muted);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-ig:hover { color: var(--amber-l); }
+    /* SECTION HEADINGS */
+    .section-hdr { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 700; text-transform: uppercase; color: var(--black); padding-bottom: 10px; border-bottom: 3px solid var(--black); margin-bottom: 20px; letter-spacing: 0.03em; }
 
-    /* ── FLOATING CTA ────────────────────────── */
-    .float-cta {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
-      display: flex; flex-direction: column; gap: 0.6rem;
-      align-items: flex-end;
-    }
-    .float-btn {
-      display: flex; align-items: center; gap: 0.7rem;
-      padding: 0.75rem 1.4rem;
-      border-radius: 100px;
-      font-size: 0.82rem; font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      transition: transform 0.2s;
-    }
-    .float-btn:hover { transform: scale(1.04); }
-    .float-call {
-      background: var(--amber); color: var(--white);
-      animation: pulse-amber 2.5s infinite;
-    }
-    .float-ig {
-      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-      color: var(--white);
-    }
-    @keyframes pulse-amber {
-      0%, 100% { box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 0 rgba(200,119,58,0.5); }
-      50%       { box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 10px rgba(200,119,58,0); }
-    }
+    /* SHOP PHOTOS */
+    .photo-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 6px; margin-bottom: 36px; }
+    .photo-grid img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .photo-grid-side { display: flex; flex-direction: column; gap: 6px; }
+    .photo-grid-side img { height: 107px; object-fit: cover; }
 
-    /* ── REVEAL ANIMATIONS ───────────────────── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.in-view { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.22s; }
-    .reveal-delay-3 { transition-delay: 0.34s; }
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+    .svc-card { background: var(--grey); border: 1px solid var(--border); padding: 16px 18px; display: flex; align-items: center; gap: 14px; transition: border-color .12s; }
+    .svc-card:hover { border-color: #aaa; }
+    .svc-icon { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+    .svc-name { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; color: var(--black); }
+    .svc-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-    /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links, .nav-phone { display: none; }
-      section { padding: 5rem 1.5rem; }
-      .hero { padding: 0 1.5rem 5rem; }
+    /* BRANDS */
+    .brands-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 36px; }
+    .brand-cell { background: #fff; padding: 14px 10px; text-align: center; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dark); }
 
-      /* Single column, 16:9 cards — big enough to read */
-      .service-grid { grid-template-columns: 1fr; gap: 3px; }
-      .service-card { aspect-ratio: 16/9; }
-      .service-card.tall { grid-row: span 1; aspect-ratio: 16/9; }
+    /* TRUCK WORK */
+    .truck-section { margin-bottom: 36px; }
+    .truck-photo { width: 100%; height: 260px; object-fit: cover; object-position: center 40%; display: block; }
+    .truck-caption { background: var(--black); color: rgba(255,255,255,0.8); font-size: 13px; padding: 10px 16px; }
 
-      /* Always show text on mobile since there's no hover */
-      .service-desc { opacity: 1 !important; transform: translateY(0) !important; }
-      .service-arrow { opacity: 1 !important; transform: translate(0,0) !important; }
-      .service-name { font-size: 1.6rem !important; }
-      .service-info { padding: 1.4rem; }
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 18px; }
+    .sb-card { border: 1px solid var(--border); }
+    .sb-hdr { background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 9px 16px; }
+    .sb-body { background: #fff; padding: 16px; }
+    .hrs-row { display: flex; justify-content: space-between; font-size: 13.5px; padding: 7px 0; border-bottom: 1px solid var(--grey); }
+    .hrs-row:last-child { border-bottom: none; }
+    .hrs-day { font-weight: 600; color: #222; }
+    .hrs-time { color: var(--muted); }
+    .hrs-closed { color: var(--red); }
+    .ct-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--grey); font-size: 13.5px; }
+    .ct-row:last-child { border-bottom: none; }
+    .ct-row svg { flex-shrink: 0; stroke: var(--muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ct-row a { color: var(--text); font-weight: 500; }
+    .ct-row a:hover { text-decoration: underline; }
+    .sb-btn { display: block; background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 13px; text-align: center; transition: background .12s; border: none; cursor: pointer; width: 100%; }
+    .sb-btn:hover { background: #333; }
+    .sb-map { width: 100%; height: 175px; border: 1px solid var(--border); overflow: hidden; }
+    .sb-map iframe { width: 100%; height: 100%; border: none; display: block; }
 
-      .why-grid, .cta-wrap, .steps { grid-template-columns: 1fr; gap: 3rem; }
-      .steps::before { display: none; }
-      .why-badge { right: 1rem; }
-      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
-      .stats { flex-wrap: wrap; }
-      .stat { min-width: 50%; }
-      .form-row { grid-template-columns: 1fr; }
+    /* APPT MODAL */
+    .appt-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 999; align-items: center; justify-content: center; }
+    .appt-overlay.open { display: flex; }
+    .appt-modal { background: #fff; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+    .appt-hdr { background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .appt-close { background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+    .appt-body { padding: 24px 20px; }
+    .appt-field { margin-bottom: 16px; }
+    .appt-field label { display: block; font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-bottom: 5px; }
+    .appt-field input, .appt-field select, .appt-field textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); font-size: 14px; font-family: 'Open Sans', sans-serif; color: #333; background: #fff; }
+    .appt-field textarea { height: 80px; resize: vertical; }
+    .appt-submit { width: 100%; background: var(--black); color: #fff; font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 14px; border: none; cursor: pointer; transition: background .12s; }
+    .appt-submit:hover { background: #333; }
+    .appt-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+
+    /* FOOTER */
+    footer { background: #111; color: rgba(255,255,255,0.55); font-size: 13px; padding: 28px 32px; text-align: center; border-top: 3px solid #2c2c2c; }
+    footer strong { color: rgba(255,255,255,0.85); }
+    footer a { color: rgba(255,255,255,0.55); }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 860px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .main-wrapper { grid-template-columns: 1fr; }
+      .icon-strip-inner { grid-template-columns: repeat(3,1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .brands-grid { grid-template-columns: repeat(2,1fr); }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid img { height: 200px; }
+      .photo-grid-side img { height: 180px; }
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .finder-form { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ─────────────────────────────────── -->
-<nav id="nav">
-  <a href="#" class="nav-logo">
-    <img src="https://i.imgur.com/p5CZSXP.png" alt="Fellowship Home Services" />
-  </a>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span class="top-bar-item">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    2048 S Orchard Dr, Bountiful, UT 84010
+  </span>
+  <span class="top-bar-item">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 01.07 2.18 2 2 0 012.18.06h3a2 2 0 012 1.72c.13 1 .36 1.98.7 2.93a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.15-1.15a2 2 0 012.11-.45c.95.34 1.93.57 2.93.7A2 2 0 0122 16.92z"/></svg>
+    <a href="tel:8012921684">801-292-1684</a>
+  </span>
+  <span class="top-bar-item">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <a href="mailto:jenkinstireco@hotmail.com">jenkinstireco@hotmail.com</a>
+  </span>
+  <span class="top-bar-item">Mon–Fri 8am–5:30pm &nbsp;·&nbsp; Sat 8am–2pm</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <img class="nav-logo-img" src="https://i.imgur.com/de5iSvE.jpeg" alt="Jenkins Tire Co."/>
+    <div class="nav-brand-name">Jenkins Tire Co.<small>Bountiful, Utah</small></div>
+  </div>
   <ul class="nav-links">
+    <li><a href="#finder">Tire Finder</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#brands">Brands</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-right">
-    <a href="tel:8018881045" class="nav-phone">📞 801-888-1045</a>
-    <a href="#contact" class="nav-cta">Free Quote</a>
+  <div class="nav-phone" style="gap:14px">
+    <button onclick="document.getElementById('apptOverlay').classList.add('open')" style="background:var(--black);color:#fff;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:9px 18px;border:none;cursor:pointer;">Schedule Appointment</button>
+    <span>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 01.07 2.18 2 2 0 012.18.06h3a2 2 0 012 1.72c.13 1 .36 1.98.7 2.93a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.15-1.15a2 2 0 012.11-.45c.95.34 1.93.57 2.93.7A2 2 0 0122 16.92z"/></svg>
+      <a href="tel:8012921684">801-292-1684</a>
+    </span>
   </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-glow"></div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Utah's #1 Home Services</div>
-    <h1>Your home,<br><em>brilliantly</em><br>cared for.</h1>
-    <p class="hero-sub">From permanent outdoor lighting to boat detailing and gutter cleaning — Fellowship does it all, and does it right.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Get a Free Quote</a>
-      <a href="#services" class="btn-ghost">See Our Services</a>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Bountiful, Utah's Local Tire Shop</div>
+      <h1 class="hero-title">Tires &amp; Auto<br/>Service You<br/>Can Trust</h1>
+      <p class="hero-sub">Family-owned. Honest prices. Most jobs done same day.</p>
+      <div class="hero-btns">
+        <a href="tel:8012921684" class="btn-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 01.07 2.18 2 2 0 012.18.06h3a2 2 0 012 1.72c.13 1 .36 1.98.7 2.93a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.15-1.15a2 2 0 012.11-.45c.95.34 1.93.57 2.93.7A2 2 0 0122 16.92z"/></svg>
+          Call 801-292-1684
+        </a>
+        <button onclick="document.getElementById('apptOverlay').classList.add('open')" class="btn-outline-w">Schedule Appointment →</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-hdr">Shop Info</div>
+      <div class="hero-card-row">
+        <svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <div class="open-pill">Open Now</div>
+          <div style="font-size:12.5px;color:#555;">Mon–Fri: 8:00am – 5:30pm</div>
+          <div style="font-size:12.5px;color:#555;">Saturday: 8:00am – 2:00pm</div>
+        </div>
+      </div>
+      <div class="hero-card-row">
+        <svg width="15" height="15" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><strong>2048 S Orchard Dr</strong><span style="font-size:13px;color:#666;">Bountiful, UT 84010</span></div>
+      </div>
+      <div class="hero-card-row">
+        <svg width="15" height="15" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 01.07 2.18 2 2 0 012.18.06h3a2 2 0 012 1.72c.13 1 .36 1.98.7 2.93a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.15-1.15a2 2 0 012.11-.45c.95.34 1.93.57 2.93.7A2 2 0 0122 16.92z"/></svg>
+        <div><strong><a href="tel:8012921684">801-292-1684</a></strong><span style="font-size:12.5px;color:#666;">Call or stop in anytime</span></div>
+      </div>
+      <a href="https://maps.google.com/?q=2048+S+Orchard+Dr+Bountiful+UT+84010" target="_blank" class="hero-card-btn">Get Directions →</a>
     </div>
   </div>
-</section>
-
-<!-- ─── STATS ─────────────────────────────────── -->
-<div class="stats">
-  <div class="stat reveal"><div class="stat-num">500+</div><div class="stat-label">Homes Served</div></div>
-  <div class="stat reveal reveal-delay-1"><div class="stat-num">5★</div><div class="stat-label">Rated Service</div></div>
-  <div class="stat reveal reveal-delay-2"><div class="stat-num">Utah</div><div class="stat-label">#1 Blue Collar Hub</div></div>
-  <div class="stat reveal reveal-delay-3"><div class="stat-num">100%</div><div class="stat-label">Satisfaction Guaranteed</div></div>
 </div>
 
-<!-- ─── SERVICES ──────────────────────────────── -->
-<section id="services">
-  <div class="services-header">
-    <div>
-      <div class="section-eyebrow reveal">What We Do</div>
-      <h2 class="section-title reveal reveal-delay-1">Built for every<br><em>corner of your home.</em></h2>
+<!-- ICON STRIP -->
+<div class="icon-strip">
+  <div class="icon-strip-inner">
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/SJ1TORU.png" alt="Tires"/>
+      <div class="icon-tab-label">Tire Sales</div>
     </div>
-    <p class="section-sub reveal reveal-delay-2" style="max-width:320px; text-align:right;">Every job done by experienced, insured tradesmen who take pride in their craft.</p>
-  </div>
-
-  <div class="service-grid">
-    <!-- Tall hero card: Permanent Lighting -->
-    <div class="service-card tall reveal">
-      <img src="https://i.imgur.com/EloYAwl.jpeg" alt="Permanent Outdoor Lighting" loading="lazy" />
-      <div class="service-overlay"></div>
-      <div class="service-info">
-        <div class="service-tag">Signature Service</div>
-        <div class="service-name">Permanent<br>Outdoor<br>Lighting</div>
-        <div class="service-desc">Color-changing, app-controlled LED lights installed under your eaves. Holiday, accent, and security lighting — all in one.</div>
-      </div>
-      <div class="service-arrow">↗</div>
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/SJ1TORU.png" alt="Balancing"/>
+      <div class="icon-tab-label">Balancing</div>
     </div>
-
-    <!-- Boat Detailing -->
-    <div class="service-card reveal reveal-delay-1">
-      <img src="https://i.imgur.com/n2CJLpG.jpeg" alt="Boat Detailing" loading="lazy" />
-      <div class="service-overlay"></div>
-      <div class="service-info">
-        <div class="service-tag">Marine</div>
-        <div class="service-name">Boat Detailing</div>
-        <div class="service-desc">Showroom-finish detail work that protects your investment.</div>
-      </div>
-      <div class="service-arrow">↗</div>
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/cjKAvVV.png" alt="Alignment"/>
+      <div class="icon-tab-label">Alignment</div>
     </div>
-
-    <!-- Window Cleaning -->
-    <div class="service-card reveal reveal-delay-2">
-      <img src="https://i.imgur.com/hAiJVNW.jpeg" alt="Window Cleaning" loading="lazy" />
-      <div class="service-overlay"></div>
-      <div class="service-info">
-        <div class="service-tag">Exterior</div>
-        <div class="service-name">Window Cleaning</div>
-        <div class="service-desc">Streak-free windows that let the light in.</div>
-      </div>
-      <div class="service-arrow">↗</div>
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/C1Dkf5d.png" alt="Brakes"/>
+      <div class="icon-tab-label">Brakes</div>
     </div>
-
-    <!-- Gutter Cleaning -->
-    <div class="service-card reveal reveal-delay-1">
-      <img src="https://i.imgur.com/vPpkuFT.jpeg" alt="Gutter Cleaning" loading="lazy" />
-      <div class="service-overlay"></div>
-      <div class="service-info">
-        <div class="service-tag">Maintenance</div>
-        <div class="service-name">Gutter Cleaning/Guard</div>
-        <div class="service-desc">Protect your foundation and roof from water damage.</div>
-      </div>
-      <div class="service-arrow">↗</div>
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/cjKAvVV.png" alt="Repair"/>
+      <div class="icon-tab-label">Flat Repair</div>
     </div>
-
-    <!-- Pressure Washing -->
-    <div class="service-card reveal reveal-delay-2">
-      <img src="https://i.imgur.com/RadmxS3.jpeg" alt="Pressure Washing" loading="lazy" />
-      <div class="service-overlay"></div>
-      <div class="service-info">
-        <div class="service-tag">Exterior</div>
-        <div class="service-name">Pressure Washing</div>
-        <div class="service-desc">Driveways, decks, siding — blasted clean.</div>
-      </div>
-      <div class="service-arrow">↗</div>
+    <div class="icon-tab" onclick="document.getElementById('apptOverlay').classList.add('open')">
+      <img src="https://i.imgur.com/SJ1TORU.png" alt="Seasonal"/>
+      <div class="icon-tab-label">Seasonal Swap</div>
     </div>
   </div>
+</div>
 
-  <div class="more-services reveal">
-    <span class="more-pill">Holiday Lighting</span>
-    <span class="more-pill">Lawn Care</span>
-    <span class="more-pill">Snow Removal</span>
-    <span class="more-pill">Handyman Services</span>
-    <span class="more-pill">Exterior Painting</span>
-    <span class="more-pill cta-pill"><a href="tel:8018881045">Don't see yours? Call 801-888-1045 →</a></span>
+<!-- TIRE FINDER -->
+<div class="finder-bar" id="finder">
+  <div class="finder-inner">
+    <div class="finder-title">
+      <img src="https://i.imgur.com/SJ1TORU.png" alt=""/>
+      The Tire Finder — Find Tires by Vehicle
+    </div>
+    <div class="finder-form">
+      <div class="finder-group">
+        <label>Year</label>
+        <select id="tf-year" onchange="populateMakes()">
+          <option value="">Select Year</option>
+        </select>
+      </div>
+      <div class="finder-group">
+        <label>Make</label>
+        <select id="tf-make" onchange="populateModels()" disabled>
+          <option value="">Select Make</option>
+        </select>
+      </div>
+      <div class="finder-group">
+        <label>Model</label>
+        <select id="tf-model" disabled>
+          <option value="">Select Model</option>
+        </select>
+      </div>
+      <button class="finder-btn" onclick="findTires()">Find Tires →</button>
+    </div>
+    <div class="finder-note">Not sure what size you need? Call us at 801-292-1684 and we'll help you out.</div>
+    <div id="finder-result" style="margin-top:14px;display:none;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);padding:14px 16px;color:#fff;font-size:14px;"></div>
   </div>
-</section>
+</div>
 
-<!-- ─── WHY FELLOWSHIP ────────────────────────── -->
-<section id="why">
-  <div class="why-grid">
-    <div class="why-image reveal">
-      <img src="https://i.imgur.com/EloYAwl.jpeg" alt="Fellowship Lighting Work" />
-      <div class="why-badge">
-        <div class="why-badge-num">100%</div>
-        <div class="why-badge-txt">Satisfaction<br>Guarantee</div>
+<!-- MAIN CONTENT -->
+<div class="main-wrapper">
+  <div>
+
+    <!-- PHOTOS -->
+    <div class="section-hdr">The Shop</div>
+    <div class="photo-grid" style="margin-bottom:36px;">
+      <img src="https://i.imgur.com/FsP4wmU.jpeg" alt="Jenkins Tire Co. shop exterior with Tesla in bay"/>
+      <div class="photo-grid-side">
+        <img src="https://i.imgur.com/wjDY6vI.jpeg" alt="Jenkins Tire shop with truck"/>
+        <img src="https://i.imgur.com/ppduMpW.jpeg" alt="Jenkins Tire shop exterior"/>
       </div>
     </div>
-    <div>
-      <div class="section-eyebrow reveal">Why Fellowship</div>
-      <h2 class="section-title reveal reveal-delay-1">The difference is<br><em>in the details.</em></h2>
-      <div class="why-features">
-        <div class="why-item reveal reveal-delay-1">
-          <div class="why-icon">🛡️</div>
-          <div>
-            <div class="why-item-title">Licensed & Insured</div>
-            <div class="why-item-desc">Every technician is vetted, licensed, and fully insured so your home is protected on every visit.</div>
-          </div>
+
+    <!-- TRUCK WORK -->
+    <div class="truck-section">
+      <img class="truck-photo" src="https://i.imgur.com/axBGRtG.jpeg" alt="Lifted truck tire work at Jenkins Tire Co."/>
+      <div class="truck-caption">From daily drivers to lifted trucks — we handle every vehicle type. 📍 Bountiful, Utah</div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-hdr" id="services">Our Services</div>
+    <div class="services-grid" style="margin-bottom:36px;">
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/SJ1TORU.png" alt="Tires"/>
+        <div><div class="svc-name">New Tire Sales</div><div class="svc-desc">All major brands. Cars, trucks, SUVs, trailers.</div></div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/cjKAvVV.png" alt="Alignment"/>
+        <div><div class="svc-name">Wheel Alignment</div><div class="svc-desc">Computerized precision alignment.</div></div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/SJ1TORU.png" alt="Balancing"/>
+        <div><div class="svc-name">Mount &amp; Balance</div><div class="svc-desc">Eliminate vibration, extend tire life.</div></div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/C1Dkf5d.png" alt="Brakes"/>
+        <div><div class="svc-name">Brake Service</div><div class="svc-desc">Pads, rotors, calipers &amp; inspection.</div></div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/cjKAvVV.png" alt="Repair"/>
+        <div><div class="svc-name">Flat Repair</div><div class="svc-desc">Patch &amp; plug, fast same-day turnaround.</div></div>
+      </div>
+      <div class="svc-card">
+        <img class="svc-icon" src="https://i.imgur.com/SJ1TORU.png" alt="Seasonal"/>
+        <div><div class="svc-name">Seasonal Swap</div><div class="svc-desc">Winter / summer changeovers &amp; storage.</div></div>
+      </div>
+    </div>
+
+    <!-- BRANDS -->
+    <div class="section-hdr" id="brands">Tire Brands We Carry</div>
+    <div class="brands-grid" style="margin-bottom:12px;">
+      <div class="brand-cell">Michelin</div>
+      <div class="brand-cell">BF Goodrich</div>
+      <div class="brand-cell">Goodyear</div>
+      <div class="brand-cell">Cooper</div>
+      <div class="brand-cell">Bridgestone</div>
+      <div class="brand-cell">Firestone</div>
+      <div class="brand-cell">Yokohama</div>
+      <div class="brand-cell">Falken</div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:0;">Don't see your brand? Call us — we can order almost any tire.</p>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="contact">
+
+    <button class="sb-btn" onclick="document.getElementById('apptOverlay').classList.add('open')" style="font-size:15px;padding:15px;">📅 Schedule an Appointment</button>
+
+    <div class="sb-card">
+      <div class="sb-hdr">Contact &amp; Location</div>
+      <div class="sb-body">
+        <div class="ct-row">
+          <svg width="15" height="15" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.8 19.8 0 01.07 2.18 2 2 0 012.18.06h3a2 2 0 012 1.72c.13 1 .36 1.98.7 2.93a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.15-1.15a2 2 0 012.11-.45c.95.34 1.93.57 2.93.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:8012921684">801-292-1684</a>
         </div>
-        <div class="why-item reveal reveal-delay-2">
-          <div class="why-icon">⚡</div>
-          <div>
-            <div class="why-item-title">Fast Response</div>
-            <div class="why-item-desc">We respond same-day and offer flexible scheduling built around your life, not ours.</div>
-          </div>
+        <div class="ct-row">
+          <svg width="15" height="15" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:jenkinstireco@hotmail.com">jenkinstireco@hotmail.com</a>
         </div>
-        <div class="why-item reveal reveal-delay-3">
-          <div class="why-icon">🏔️</div>
-          <div>
-            <div class="why-item-title">Utah-Born & Raised</div>
-            <div class="why-item-desc">We're your neighbors. We understand Utah homes, Utah weather, and Utah standards.</div>
-          </div>
+        <div class="ct-row">
+          <svg width="15" height="15" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>2048 S Orchard Dr<br/>Bountiful, UT 84010</span>
         </div>
-        <div class="why-item reveal">
-          <div class="why-icon">✅</div>
-          <div>
-            <div class="why-item-title">Work Guaranteed</div>
-            <div class="why-item-desc">Not happy? We come back and make it right — every single time, no questions asked.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PROCESS ───────────────────────────────── -->
-<section id="process">
-  <div class="process-header">
-    <div class="section-eyebrow reveal">How It Works</div>
-    <h2 class="section-title reveal reveal-delay-1">Three steps to a<br><em>better home.</em></h2>
-  </div>
-  <div class="steps">
-    <div class="step reveal reveal-delay-1">
-      <div class="step-num">1</div>
-      <div class="step-title">Request a Free Quote</div>
-      <div class="step-desc">Fill out the form below or call us directly. We'll get back to you fast — usually same day.</div>
-    </div>
-    <div class="step reveal reveal-delay-2">
-      <div class="step-num">2</div>
-      <div class="step-title">We Come to You</div>
-      <div class="step-desc">A skilled Fellowship technician shows up on time, reviews the job, and gives you a clear price upfront.</div>
-    </div>
-    <div class="step reveal reveal-delay-3">
-      <div class="step-num">3</div>
-      <div class="step-title">Sit Back & Enjoy</div>
-      <div class="step-desc">We handle every detail. When we're done, your home looks better than ever — guaranteed.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── REVIEWS ───────────────────────────────── -->
-<section id="reviews">
-  <div class="reviews-header">
-    <div>
-      <div class="section-eyebrow reveal">Reviews</div>
-      <h2 class="section-title reveal reveal-delay-1">Utah homeowners<br><em>love us.</em></h2>
-    </div>
-    <div class="rating-badge reveal">
-      <div>
-        <div class="stars">★★★★★</div>
-        <div class="rating-text"><strong>5.0</strong> · 100+ Reviews</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="overflow:hidden; margin: 0 -3rem; padding: 0 3rem;">
-    <div class="review-track">
-      <!-- Real reviews ×2 for infinite loop -->
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The lighting they installed is absolutely stunning. Our neighbors keep asking who did it. Worth every penny and the crew was professional from start to finish."</p><div class="review-author">Jason M.</div><div class="review-location">South Jordan, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"They detailed our boat before summer and it looked like it just rolled out of the dealership. Fast, thorough, fair price. Couldn't ask for more."</p><div class="review-author">Sara K.</div><div class="review-location">Draper, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Called on a Tuesday, gutters cleaned by Wednesday afternoon. The guys were polite, wore shoe covers inside, and left zero mess. Rare to find these days."</p><div class="review-author">Mike T.</div><div class="review-location">Lehi, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We had our windows and exterior pressure washed before listing our house. The realtor said it added serious curb appeal. Sold above asking in a week!"</p><div class="review-author">Brittany H.</div><div class="review-location">Highland, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"These guys are the real deal. Permanent lights, boat detail, window cleaning — we use them for everything. Honestly the best service company in Utah."</p><div class="review-author">Dave & Lori F.</div><div class="review-location">Provo, UT</div></div>
-      <!-- Duplicates for infinite scroll -->
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The lighting they installed is absolutely stunning. Our neighbors keep asking who did it. Worth every penny and the crew was professional from start to finish."</p><div class="review-author">Jason M.</div><div class="review-location">South Jordan, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"They detailed our boat before summer and it looked like it just rolled out of the dealership. Fast, thorough, fair price. Couldn't ask for more."</p><div class="review-author">Sara K.</div><div class="review-location">Draper, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Called on a Tuesday, gutters cleaned by Wednesday afternoon. The guys were polite, wore shoe covers inside, and left zero mess. Rare to find these days."</p><div class="review-author">Mike T.</div><div class="review-location">Lehi, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"We had our windows and exterior pressure washed before listing our house. The realtor said it added serious curb appeal. Sold above asking in a week!"</p><div class="review-author">Brittany H.</div><div class="review-location">Highland, UT</div></div>
-      <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"These guys are the real deal. Permanent lights, boat detail, window cleaning — we use them for everything. Honestly the best service company in Utah."</p><div class="review-author">Dave & Lori F.</div><div class="review-location">Provo, UT</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CONTACT / QUOTE ───────────────────────── -->
-<section id="contact">
-  <div class="cta-wrap">
-    <div class="cta-left">
-      <div class="section-eyebrow reveal">Get In Touch</div>
-      <h2 class="section-title reveal reveal-delay-1">Ready to get<br><em>started today?</em></h2>
-      <p class="section-sub reveal reveal-delay-2">Call, text, or fill out the form. We respond fast and quotes are always free.</p>
-
-      <div class="contact-methods reveal reveal-delay-2">
-        <a href="tel:8018881045" class="contact-card">
-          <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-label">Call or Text</div>
-            <div class="contact-val">801-888-1045</div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-        <a href="https://www.instagram.com/fellowship.home" target="_blank" class="contact-card">
-          <div class="contact-icon">📷</div>
-          <div>
-            <div class="contact-label">Instagram</div>
-            <div class="contact-val">@fellowship.home</div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-        <a href="sms:+18018881045" class="contact-card">
-          <div class="contact-icon">💬</div>
-          <div>
-            <div class="contact-label">Text Us</div>
-            <div class="contact-val">Quick response guaranteed</div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
+        <a href="https://maps.google.com/?q=2048+S+Orchard+Dr+Bountiful+UT+84010" target="_blank" class="sb-btn" style="margin-top:10px;display:block;">Get Directions →</a>
       </div>
     </div>
 
-    <div class="reveal reveal-delay-1" style="display:flex; flex-direction:column; justify-content:center; height:100%;">
-      <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); margin-bottom:1.4rem;">Free Quote Form</p>
-      <p style="font-size:1rem; color:var(--muted); line-height:1.75; margin-bottom:2.2rem;">Fill out our quick form and we'll get back to you within a few hours. No pressure, no spam — just a free, honest quote.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScj3vrYK-WxQQTHwDPRXx5M45lHom1FCAxjwWRqf44jY8y2mg/viewform?usp=publish-editor" target="_blank" class="btn-primary" style="display:inline-block; text-align:center; font-size:1rem; padding:1.1rem 2.8rem;">
-        Request a Free Quote →
-      </a>
-      <p style="font-size:0.72rem; color:var(--muted); margin-top:1rem;">Opens in a new tab · Takes less than 2 minutes</p>
+    <div class="sb-card">
+      <div class="sb-hdr">Hours</div>
+      <div class="sb-body">
+        <div class="hrs-row"><span class="hrs-day">Monday</span><span class="hrs-time">8:00am – 5:30pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Tuesday</span><span class="hrs-time">8:00am – 5:30pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Wednesday</span><span class="hrs-time">8:00am – 5:30pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Thursday</span><span class="hrs-time">8:00am – 5:30pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Friday</span><span class="hrs-time">8:00am – 5:30pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Saturday</span><span class="hrs-time">8:00am – 2:00pm</span></div>
+        <div class="hrs-row"><span class="hrs-day">Sunday</span><span class="hrs-closed">Closed</span></div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ─── FOOTER ────────────────────────────────── -->
+    <div class="sb-map">
+      <iframe src="https://maps.google.com/maps?q=2048+S+Orchard+Dr,+Bountiful,+UT+84010&output=embed" title="Map" loading="lazy"></iframe>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <img src="https://i.imgur.com/p5CZSXP.png" alt="Fellowship Home Services" />
-      <p>Utah's #1 hub for blue collar home services. Trusted tradesmen, guaranteed work, and a team that actually shows up.</p>
-    </div>
-    <div>
-      <div class="footer-col-title">Services</div>
-      <ul class="footer-links">
-        <li><a href="#">Permanent Lighting</a></li>
-        <li><a href="#">Boat Detailing</a></li>
-        <li><a href="#">Window Cleaning</a></li>
-        <li><a href="#">Gutter Cleaning/Guard</a></li>
-        <li><a href="#">Pressure Washing</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Contact</div>
-      <ul class="footer-links">
-        <li><a href="tel:8018881045">📞 801-888-1045</a></li>
-        <li><a href="sms:+18018881045">💬 Text Us</a></li>
-        <li><a href="https://www.instagram.com/fellowship.home" target="_blank">📷 @fellowship.home</a></li>
-        <li><a href="#contact">Request a Quote</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 Fellowship Home Services · Utah's #1 Blue Collar Hub</span>
-    <a href="https://www.instagram.com/fellowship.home" target="_blank" class="footer-ig">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
-      @fellowship.home
-    </a>
-  </div>
+  <strong>Jenkins Tire Co.</strong> &nbsp;·&nbsp; 2048 S Orchard Dr, Bountiful, UT 84010<br/>
+  <a href="tel:8012921684">801-292-1684</a> &nbsp;·&nbsp; <a href="mailto:jenkinstireco@hotmail.com">jenkinstireco@hotmail.com</a><br/><br/>
+  © 2025 Jenkins Tire Co. All rights reserved.
 </footer>
 
-<!-- ─── FLOATING BUTTONS ─────────────────────── -->
-<div class="float-cta">
-  <a href="https://www.instagram.com/fellowship.home" target="_blank" class="float-btn float-ig">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2.5"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="2.5"/><circle cx="17.5" cy="6.5" r="2" fill="white"/></svg>
-    Instagram
-  </a>
-  <a href="tel:8018881045" class="float-btn float-call">
-    📞 801-888-1045
-  </a>
+<!-- APPOINTMENT MODAL -->
+<div class="appt-overlay" id="apptOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="appt-modal">
+    <div class="appt-hdr">
+      Schedule an Appointment
+      <button class="appt-close" onclick="document.getElementById('apptOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="appt-body">
+      <div class="appt-field"><label>Your Name</label><input type="text" placeholder="John Smith"/></div>
+      <div class="appt-field"><label>Phone Number</label><input type="tel" placeholder="(801) 555-0000"/></div>
+      <div class="appt-field"><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="appt-field"><label>Preferred Date</label><input type="date"/></div>
+        <div class="appt-field"><label>Preferred Time</label>
+          <select>
+            <option>Morning (8–10am)</option>
+            <option>Mid-Morning (10am–12pm)</option>
+            <option>Afternoon (12–3pm)</option>
+            <option>Late Afternoon (3–5pm)</option>
+          </select>
+        </div>
+      </div>
+      <div class="appt-field"><label>Vehicle (Year / Make / Model)</label><input type="text" placeholder="e.g. 2019 Toyota Tacoma"/></div>
+      <div class="appt-field"><label>Service Needed</label>
+        <select>
+          <option>Tire Purchase &amp; Install</option>
+          <option>Wheel Alignment</option>
+          <option>Mount &amp; Balance</option>
+          <option>Brake Service</option>
+          <option>Flat Repair</option>
+          <option>Seasonal Tire Swap</option>
+          <option>Other / Not Sure</option>
+        </select>
+      </div>
+      <div class="appt-field"><label>Additional Notes</label><textarea placeholder="Anything else we should know?"></textarea></div>
+      <button class="appt-submit" onclick="submitAppt()">Request Appointment →</button>
+      <p class="appt-note">We'll call you to confirm within 1 business day. Or call us directly: <a href="tel:8012921684">801-292-1684</a></p>
+    </div>
+  </div>
 </div>
 
 <script>
-  // Nav shrink on scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+const vehicleData = {
+  2025: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Bronco','Ranger'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe'], Ram: ['1500','2500','3500'], Honda: ['Accord','Civic','CR-V','Pilot','Ridgeline'], Nissan: ['Altima','Frontier','Pathfinder','Titan'], Jeep: ['Wrangler','Gladiator','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek','Impreza'], GMC: ['Sierra','Canyon','Yukon','Terrain'], Dodge: ['Durango','Challenger','Charger'] },
+  2024: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner','Highlander'], Ford: ['F-150','F-250','Mustang','Explorer','Bronco','Ranger','Escape'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe','Traverse'], Ram: ['1500','2500','3500'], Honda: ['Accord','Civic','CR-V','Pilot','Ridgeline','Odyssey'], Nissan: ['Altima','Frontier','Pathfinder','Titan','Murano'], Jeep: ['Wrangler','Gladiator','Grand Cherokee','Cherokee','Compass'], Subaru: ['Outback','Forester','Crosstrek','Impreza','Legacy'], GMC: ['Sierra','Canyon','Yukon','Terrain','Acadia'], Dodge: ['Durango','Challenger','Charger'] },
+  2023: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner','Highlander','Sequoia'], Ford: ['F-150','F-250','Mustang','Explorer','Bronco','Ranger','Escape'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe','Suburban'], Ram: ['1500','2500','3500','ProMaster'], Honda: ['Accord','Civic','CR-V','Pilot','Ridgeline'], Nissan: ['Altima','Frontier','Pathfinder','Titan'], Jeep: ['Wrangler','Gladiator','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek','WRX'], GMC: ['Sierra','Canyon','Yukon','Terrain'], Tesla: ['Model 3','Model Y','Model S','Model X','Cybertruck'] },
+  2022: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Bronco','Ranger'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe'], Ram: ['1500','2500','3500'], Honda: ['Accord','Civic','CR-V','Pilot'], Nissan: ['Altima','Frontier','Titan'], Jeep: ['Wrangler','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek'], GMC: ['Sierra','Canyon','Yukon'], Tesla: ['Model 3','Model Y','Model S','Model X'] },
+  2021: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Ranger'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe'], Ram: ['1500','2500','3500'], Honda: ['Accord','Civic','CR-V','Pilot'], Nissan: ['Altima','Frontier','Titan'], Jeep: ['Wrangler','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek'], GMC: ['Sierra','Canyon','Yukon'], Tesla: ['Model 3','Model Y','Model S','Model X'] },
+  2020: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Ranger'], Chevrolet: ['Silverado','Colorado','Equinox','Tahoe'], Ram: ['1500','2500'], Honda: ['Accord','Civic','CR-V','Pilot'], Nissan: ['Altima','Frontier','Titan'], Jeep: ['Wrangler','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek'], GMC: ['Sierra','Canyon'], Dodge: ['Durango','Challenger','Charger'] },
+  2019: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Ranger','Escape'], Chevrolet: ['Silverado','Colorado','Equinox'], Ram: ['1500','2500'], Honda: ['Accord','Civic','CR-V','Pilot'], Nissan: ['Altima','Frontier','Titan'], Jeep: ['Wrangler','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek'], GMC: ['Sierra','Canyon'], Dodge: ['Durango','Challenger','Charger','Ram 1500'] },
+  2018: { Toyota: ['Camry','Tacoma','Tundra','RAV4','4Runner'], Ford: ['F-150','Mustang','Explorer','Escape'], Chevrolet: ['Silverado','Colorado','Equinox'], Ram: ['1500','2500'], Honda: ['Accord','Civic','CR-V','Pilot'], Nissan: ['Altima','Frontier','Titan'], Jeep: ['Wrangler','Grand Cherokee','Cherokee'], Subaru: ['Outback','Forester','Crosstrek'], GMC: ['Sierra','Canyon'], Dodge: ['Durango','Challenger','Charger'] }
+};
 
-  // Hero bg parallax/load
-  const heroBg = document.getElementById('heroBg');
-  setTimeout(() => heroBg.classList.add('loaded'), 100);
+const yearSel = document.getElementById('tf-year');
+const makeSel = document.getElementById('tf-make');
+const modelSel = document.getElementById('tf-model');
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => io.observe(el));
+(function initYears(){
+  const years = Object.keys(vehicleData).sort((a,b)=>b-a);
+  years.forEach(y => { const o = document.createElement('option'); o.value=y; o.textContent=y; yearSel.appendChild(o); });
+})();
+
+function populateMakes(){
+  const yr = yearSel.value;
+  makeSel.innerHTML = '<option value="">Select Make</option>';
+  modelSel.innerHTML = '<option value="">Select Model</option>';
+  makeSel.disabled = !yr;
+  modelSel.disabled = true;
+  document.getElementById('finder-result').style.display='none';
+  if(!yr) return;
+  const makes = Object.keys(vehicleData[yr]).sort();
+  makes.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=m; makeSel.appendChild(o); });
+  makeSel.disabled = false;
+}
+
+function populateModels(){
+  const yr = yearSel.value;
+  const mk = makeSel.value;
+  modelSel.innerHTML = '<option value="">Select Model</option>';
+  modelSel.disabled = !mk;
+  document.getElementById('finder-result').style.display='none';
+  if(!yr||!mk) return;
+  const models = vehicleData[yr][mk] || [];
+  models.forEach(m => { const o = document.createElement('option'); o.value=m; o.textContent=m; modelSel.appendChild(o); });
+  modelSel.disabled = false;
+}
+
+function findTires(){
+  const yr = yearSel.value, mk = makeSel.value, md = modelSel.value;
+  const res = document.getElementById('finder-result');
+  if(!yr||!mk||!md){ res.style.display='block'; res.innerHTML='<strong>Please select a Year, Make, and Model to continue.</strong>'; return; }
+  res.style.display='block';
+  res.innerHTML = `<strong>✅ Great news!</strong> We carry tires for your <strong>${yr} ${mk} ${md}</strong>.<br/><br/>Give us a call at <a href="tel:8012921684" style="color:#fff;font-weight:700;">801-292-1684</a> to get pricing and availability, or <button onclick="document.getElementById('apptOverlay').classList.add('open')" style="background:#fff;color:#111;border:none;padding:6px 14px;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;cursor:pointer;margin-left:4px;">Schedule an Appointment →</button>`;
+}
+
+function submitAppt(){
+  const overlay = document.getElementById('apptOverlay');
+  overlay.querySelector('.appt-body').innerHTML = `<div style="text-align:center;padding:40px 20px;"><div style="font-size:42px;margin-bottom:16px;">✅</div><div style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;margin-bottom:10px;">Request Received!</div><p style="color:#555;font-size:14px;margin-bottom:20px;">We'll give you a call to confirm your appointment within 1 business day.</p><p style="font-size:14px;color:#555;">Questions? Call us directly:<br/><a href="tel:8012921684" style="font-weight:700;color:#111;">801-292-1684</a></p></div>`;
+}
 </script>
 </body>
 </html>
